@@ -1,0 +1,27 @@
+{
+  "name": "budgety",
+  "version": "1.0.0",
+  "description": "The Budget Managing App",
+  "main": "app.js",
+  "scripts": {
+    "start": "run-s prebuild watch:parcel",
+    "build": "run-s prebuild build:parcel postbuild",
+    "watch:parcel": "parcel src/index.html -d build --port 8080 --open",
+    "build:parcel": "parcel build src/index.html -d build",
+    "prebuild": "rm -rf build/*",
+    "postbuild": "rm -rf build/*.map"
+  },
+  "author": "Abubakr",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "autoprefixer": "^9.6.1",
+    "parcel-bundler": "^1.12.3",
+    "postcss-cli": "^6.1.3",
+    "sass": "^1.22.9"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.4.4"
+  }
+}
