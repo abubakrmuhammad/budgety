@@ -1,0 +1,222 @@
+/////////////////////////
+// GLOBAL BUDGET
+////////////////////////
+
+.budget {
+  display: flex;
+  flex-direction: column;
+  color: $color-white;
+  font-weight: 300;
+  text-align: center;
+  padding: 4rem 0;
+
+  &__title {
+    font-size: 1.8rem;
+  }
+
+  &__value {
+    font-size: 4.5rem;
+    margin: 1rem auto;
+  }
+
+  &__income,
+  &__expenses {
+    display: grid;
+    grid-template-columns: 1rem 1fr 1fr 3.5rem;
+    justify-items: start;
+    align-items: center;
+    padding: 1rem 0rem;
+    font-size: 1.4rem;
+    border-radius: 1px;
+    text-transform: uppercase;
+
+    &--text {
+      grid-column: 2 / 3;
+    }
+
+    &--value {
+      justify-self: end;
+    }
+  }
+
+  &__income {
+    background-color: $color-green;
+    margin-bottom: 1rem;
+  }
+
+  &__expenses {
+    background-color: $color-red;
+
+    &--percentage {
+      font-size: 1rem;
+      padding: 0 2px;
+      border-radius: $border-radius-default;
+      background-color: rgba($color-white, 0.3);
+      text-align: center;
+      justify-self: center;
+    }
+  }
+}
+
+/////////////////////////
+// ADD FORM
+////////////////////////
+
+.add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: darken($color-gray-light-1, 0.4);
+  border-bottom: 2px solid $color-gray-light-2;
+
+  &__type,
+  &__description,
+  &__value {
+    font-family: inherit;
+    font-size: 1.6rem;
+    font-weight: 300;
+    padding: 1rem 1.5rem;
+    margin-right: 1rem;
+    color: $color-gray-dark;
+    background-color: $color-white;
+    border-radius: $border-radius-default;
+    border: 1px solid darken($color-gray-light-2, 10);
+    transition: all 0.3s ease;
+
+    &:focus {
+      border: 1px solid $color-green;
+    }
+
+    &::placeholder {
+      color: $color-gray-dark-1;
+    }
+  }
+
+  &__description {
+    flex: 0 0 30%;
+  }
+
+  &__value {
+    min-width: 0;
+    flex: 0 0 9%;
+  }
+
+  &__button {
+    color: $color-green;
+    font-size: 3.5rem;
+    font-weight: 100;
+    margin-left: 1rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    user-select: none;
+  }
+}
+
+/////////////////////////
+// INCOME
+////////////////////////
+
+.income {
+  grid-column: 2 / 3;
+
+  &__title {
+    color: $color-green;
+    font-size: 2.2rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .item {
+    &__value,
+    &__delete {
+      color: $color-green;
+    }
+  }
+}
+
+/////////////////////////
+// EXPENSES
+////////////////////////
+
+.expenses {
+  grid-column: 4 / 5;
+
+  &__title {
+    color: $color-red;
+    font-size: 2.2rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .item {
+    &__value,
+    &__delete {
+      color: $color-red;
+    }
+  }
+}
+
+/////////////////////////
+// ITEMS
+////////////////////////
+
+.item {
+  display: flex;
+  font-size: 1.6rem;
+  font-weight: 300;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid darken($color-gray-light-2, 1);
+  border-left: none;
+  border-right: none;
+
+  &__value {
+    margin-left: auto;
+  }
+
+  &__delete {
+    color: currentColor;
+    font-size: 2.4rem;
+    background-color: transparent;
+    border: none;
+    margin-left: 0;
+    opacity: 0;
+    // width: 0;
+    visibility: hidden;
+    user-select: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  &:hover {
+    .item__delete {
+      margin-left: 1.5rem;
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &__percentage {
+    margin-left: 1rem;
+    color: $color-red;
+    font-size: 1rem;
+    padding: 0 3px;
+    border-radius: $border-radius-default;
+    background-color: rgba($color-red, 0.2);
+    text-align: center;
+    justify-self: center;
+  }
+}

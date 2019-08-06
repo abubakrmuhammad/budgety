@@ -1,0 +1,38 @@
+.app {
+  height: calc(100vh - 12rem);
+  display: grid;
+  grid-template-rows: min-content minmax(min-content, 10rem) 1fr;
+  // grid-template-columns: 10% 1fr 10%;
+  // [sidebar-start] 8rem [sidebar-end full-start]
+  // minmax(6rem, 1fr) [center-start]
+  // repeat(8, [col-start] minmax(min-content, 14rem) [col-end])
+  // [center-end] minmax(6rem, 1fr) [full-end];
+  background-color: $color-gray-light-1;
+  // padding: 0 10%;
+  border-radius: $border-radius-medium;
+  box-shadow: 0 1rem 2rem rgba($color-black, 0.19),
+    0 0.6rem 0.6rem rgba($color-black, 0.23);
+  // min-height: 500px;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 7% 1fr 5% 1fr 7%;
+  margin-top: 3rem;
+}
+
+.header {
+  background-image: linear-gradient(
+      rgba($color-black, 0.35),
+      rgba($color-black, 0.35)
+    ),
+    url('../img/back.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-right-radius: $border-radius-medium;
+  border-top-left-radius: $border-radius-medium;
+  // grid-column: 1 / -1;
+}
