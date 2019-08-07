@@ -1,4 +1,8 @@
-import { getCurrentMonthYear, formatPercentage } from '../utils';
+import {
+  getCurrentMonthYear,
+  formatPercentage,
+  formatCurrency
+} from '../utils';
 
 class UI {
   constructor() {
@@ -88,7 +92,10 @@ class UI {
 
   updateBudget({ budget, inc, exp }) {
     const { budgetValue, budgetIncome, budgetExpenses } = this.DOM;
-    budgetValue.textContent = `${budget < 0 ? '-' : '+'} ${Math.abs(budget)}`;
+
+    budgetValue.textContent = `
+    ${budget < 0 ? '-' : '+'} ${formatCurrency(Math.abs(budget))}`;
+
     budgetIncome.textContent = inc;
     budgetExpenses.textContent = exp;
   }

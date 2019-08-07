@@ -1,1 +1,81 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><title>Budgety</title><link href="https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,600" rel="stylesheet" type="text/css"><link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"><link rel="stylesheet" href="/js.067ac062.css"></head><body>  <div class="app"> <header class="header"> <div class="budget"> <div class="budget__title"> Available Budget in <span class="budget__title--month">-------------</span> </div> <div class="budget__value">00.00</div> <div class="budget__income"> <div class="budget__income--text">Income</div> <div class="budget__income--value">00.00</div> </div> <div class="budget__expenses"> <div class="budget__expenses--text">Expenses</div> <div class="budget__expenses--value">00.00</div> <div class="budget__expenses--percentage">---</div> </div> </div> </header> <section class="add"> <form autocomplete="off" class="add__form"> <select class="add__type"> <option value="inc">+</option> <option value="exp">-</option> </select> <input type="text" class="add__description" placeholder="Add Description"> <input type="number" class="add__value" placeholder="Value" step="0.01"> <button type="submit" class="add__button"> <i class="ion-ios-checkmark-outline"></i> </button> </form> </section> <main class="main"> <div class="income"> <h2 class="income__title">Income</h2> <div class="income__list"> <div class="item" id="income-0"> <div class="item__description">Salary</div> <div class="item__value">2,100.00</div> <div class="item__percentage inc">21%</div> <button class="item__delete"> <i class="ion-ios-close-outline"></i> </button> </div> </div> </div> <div class="expenses"> <h2 class="expenses__title">Expenses</h2> <div class="expenses__list"> <div class="item" id="expense-0"> <div class="item__description">Apartment rent</div> <div class="item__value">900.00</div> <div class="item__percentage exp">21%</div> <button class="item__delete"> <i class="ion-ios-close-outline"></i> </button> </div> </div> </div> </main> </div> <script src="/js.da13f2d8.js"></script> </body></html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Budgety</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ionicons@2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="/js.00a46daa.css"></head>
+  <body>
+    <!-- <button id="debug">Log Data</button> -->
+    <div class="app">
+      <header class="header">
+        <div class="budget">
+          <div class="budget__title">
+            Available Budget in
+            <span class="budget__title--month">-------------</span>
+          </div>
+          <div class="budget__value">00.00</div>
+
+          <div class="budget__income">
+            <div class="budget__income--text">Income</div>
+            <div class="budget__income--value">00.00</div>
+          </div>
+
+          <div class="budget__expenses">
+            <div class="budget__expenses--text">Expenses</div>
+            <div class="budget__expenses--value">00.00</div>
+            <div class="budget__expenses--percentage">---</div>
+          </div>
+        </div>
+      </header>
+
+      <section class="add">
+        <form autocomplete="off" class="add__form">
+          <select class="add__type">
+            <option value="inc">+</option>
+            <option value="exp">-</option>
+          </select>
+          <input type="text" class="add__description" placeholder="Add Description">
+          <input type="number" class="add__value" placeholder="Value" step="0.0001">
+          <button type="submit" class="add__button">
+            <i class="ion-ios-checkmark-outline"></i>
+          </button>
+        </form>
+      </section>
+
+      <main class="main">
+        <div class="income">
+          <h2 class="income__title">Income</h2>
+          <div class="income__list">
+            <div class="item" id="income-0">
+              <div class="item__description">Salary</div>
+              <div class="item__value">2,100.00</div>
+              <div class="item__percentage inc">21%</div>
+              <button class="item__delete">
+                <i class="ion-ios-close-outline"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="expenses">
+          <h2 class="expenses__title">Expenses</h2>
+          <div class="expenses__list">
+            <div class="item" id="expense-0">
+              <div class="item__description">Apartment rent</div>
+              <div class="item__value">900.00</div>
+              <div class="item__percentage exp">21%</div>
+              <button class="item__delete">
+                <i class="ion-ios-close-outline"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="/js.00a46daa.js"></script>
+  </body>
+</html>

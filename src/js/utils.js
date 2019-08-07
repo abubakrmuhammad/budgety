@@ -77,3 +77,34 @@ export function getCurrentMonthYear() {
 export function formatPercentage(number) {
   return number ? `${number}%` : '---';
 }
+
+export function formatCurrency(number) {
+  let formattedNumber = number.toFixed(2);
+  let [int, dec] = formattedNumber.split('.');
+
+  formattedNumber = '';
+
+  if (int.length > 3) {
+    int = int.split('').reverse();
+
+    int.forEach((digit, i) => {
+      if ((i + 1) % 3 === 0) {
+        formattedNumber += `${digit},`;
+      } else formattedNumber += digit;
+    });
+
+    formattedNumber = formattedNumber
+      .split('')
+      .reverse()
+      .join('');
+
+    if (formattedNumber.startsWith(','))
+      formattedNumber = formattedNumber.slice(1);
+  }
+
+  formattedNumber = `${formattedNumber || int}.${dec}`;
+
+  return formattedNumber;
+}
+
+formatCurrency(56.7685);
