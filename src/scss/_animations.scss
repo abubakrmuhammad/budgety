@@ -1,0 +1,17 @@
+@keyframes slideDownAlert {
+  from {
+    top: -10rem;
+  }
+  to {
+    top: 0;
+  }
+}
+
+@keyframes slideUpAlert {
+  from {
+    top: 0;
+  }
+  to {
+    top: -10rem;
+  }
+}

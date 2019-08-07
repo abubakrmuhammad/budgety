@@ -63,11 +63,29 @@
 ////////////////////////
 
 .add {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background-color: darken($color-gray-light-1, 0.4);
   border-bottom: 2px solid $color-gray-light-2;
+
+  &__form {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__form.red {
+    .add__type,
+    .add__description,
+    .add__value {
+      &:focus {
+        border: 1px solid $color-red;
+      }
+    }
+
+    .add__button {
+      color: $color-red;
+    }
+  }
 
   &__type,
   &__description,
@@ -110,6 +128,11 @@
     border: none;
     cursor: pointer;
     user-select: none;
+    transition: color 0.3s ease;
+
+    &:active {
+      transform: translateY(2px);
+    }
   }
 }
 
@@ -137,6 +160,10 @@
     &__value,
     &__delete {
       color: $color-green;
+    }
+
+    &__value::before {
+      content: '+ ';
     }
   }
 }
@@ -166,6 +193,10 @@
     &__delete {
       color: $color-red;
     }
+
+    &__value::before {
+      content: '- ';
+    }
   }
 }
 
@@ -179,9 +210,11 @@
   font-weight: 300;
   align-items: center;
   padding: 1rem;
-  border: 1px solid darken($color-gray-light-2, 1);
-  border-left: none;
-  border-right: none;
+  border-top: 1px solid darken($color-gray-light-2, 1);
+
+  &:last-child {
+    border-bottom: 1px solid darken($color-gray-light-2, 1);
+  }
 
   &__value {
     margin-left: auto;
@@ -189,34 +222,70 @@
 
   &__delete {
     color: currentColor;
-    font-size: 2.4rem;
+    font-size: 2rem;
     background-color: transparent;
     border: none;
     margin-left: 0;
     opacity: 0;
-    // width: 0;
     visibility: hidden;
     user-select: none;
     cursor: pointer;
     transition: all 0.3s ease;
   }
 
-  &:hover {
-    .item__delete {
-      margin-left: 1.5rem;
-      opacity: 1;
-      visibility: visible;
-    }
+  &:hover &__delete {
+    margin-left: 1.5rem;
+    opacity: 1;
+    visibility: visible;
   }
 
   &__percentage {
     margin-left: 1rem;
     color: $color-red;
     font-size: 1rem;
-    padding: 0 3px;
+    min-width: 2.5rem;
     border-radius: $border-radius-default;
     background-color: rgba($color-red, 0.2);
     text-align: center;
     justify-self: center;
+
+    &.inc {
+      display: none;
+    }
+  }
+}
+
+/////////////////////////
+// ALERT
+////////////////////////
+
+.alert {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(-7px);
+  z-index: 999;
+  padding: 1.5rem 2.5rem;
+  min-width: 25%;
+  max-width: 50%;
+  text-align: center;
+  color: $color-white;
+  font-size: 1.4rem;
+  font-weight: 300;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  border-radius: $border-radius-medium;
+  cursor: pointer;
+  animation: slideDownAlert 0.2s ease-in;
+
+  &--hidden {
+    animation: slideUpAlert 0.2s ease-in;
+  }
+
+  &--success {
+    background-color: $color-green;
+  }
+
+  &--error {
+    background-color: $color-red;
   }
 }

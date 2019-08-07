@@ -1,4 +1,5 @@
 import '@babel/polyfill';
 import '../scss/main.scss';
+import App from './App';
 
-console.log('Hello World!');
+new App().init();

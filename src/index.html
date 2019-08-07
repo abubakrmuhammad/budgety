@@ -16,12 +16,13 @@
     />
   </head>
   <body>
+    <button id="debug">Log Data</button>
     <div class="app">
       <header class="header">
         <div class="budget">
           <div class="budget__title">
             Available Budget in
-            <span class="budget__title--month">August 2019</span>
+            <span class="budget__title--month">-------------</span>
           </div>
           <div class="budget__value">+ 2,345.64</div>
 
@@ -39,19 +40,26 @@
       </header>
 
       <section class="add">
-        <select class="add__type">
-          <option value="inc">+</option>
-          <option value="exp">-</option>
-        </select>
-        <input
-          type="text"
-          class="add__description"
-          placeholder="Add Description"
-        />
-        <input type="number" class="add__value" placeholder="Value" />
-        <button class="add__button">
-          <i class="ion-ios-checkmark-outline"></i>
-        </button>
+        <form autocomplete="off" class="add__form">
+          <select class="add__type">
+            <option value="inc">+</option>
+            <option value="exp">-</option>
+          </select>
+          <input
+            type="text"
+            class="add__description"
+            placeholder="Add Description"
+          />
+          <input
+            type="number"
+            class="add__value"
+            placeholder="Value"
+            step="0.01"
+          />
+          <button type="submit" class="add__button">
+            <i class="ion-ios-checkmark-outline"></i>
+          </button>
+        </form>
       </section>
 
       <main class="main">
@@ -60,7 +68,8 @@
           <div class="income__list">
             <div class="item" id="income-0">
               <div class="item__description">Salary</div>
-              <div class="item__value">+ 2,100.00</div>
+              <div class="item__value">2,100.00</div>
+              <div class="item__percentage inc">21%</div>
               <button class="item__delete">
                 <i class="ion-ios-close-outline"></i>
               </button>
@@ -73,8 +82,8 @@
           <div class="expenses__list">
             <div class="item" id="expense-0">
               <div class="item__description">Apartment rent</div>
-              <div class="item__value">- 900.00</div>
-              <div class="item__percentage">21%</div>
+              <div class="item__value">900.00</div>
+              <div class="item__percentage exp">21%</div>
               <button class="item__delete">
                 <i class="ion-ios-close-outline"></i>
               </button>
