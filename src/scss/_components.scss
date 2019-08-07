@@ -36,20 +36,33 @@
 
     &--value {
       justify-self: end;
+
+      &::before {
+        margin-right: 0.5rem;
+      }
     }
   }
 
   &__income {
     background-color: $color-green;
     margin-bottom: 1rem;
+
+    &--value::before {
+      content: '+';
+    }
   }
 
   &__expenses {
     background-color: $color-red;
 
+    &--value::before {
+      content: '-';
+    }
+
     &--percentage {
       font-size: 1rem;
       padding: 0 2px;
+      min-width: 2.5rem;
       border-radius: $border-radius-default;
       background-color: rgba($color-white, 0.3);
       text-align: center;

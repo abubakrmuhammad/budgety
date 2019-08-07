@@ -6,6 +6,15 @@ class UI {
       get date() {
         return document.querySelector('.budget__title--month');
       },
+      get budgetValue() {
+        return document.querySelector('.budget__value');
+      },
+      get budgetIncome() {
+        return document.querySelector('.budget__income--value');
+      },
+      get budgetExpenses() {
+        return document.querySelector('.budget__expenses--value');
+      },
       addForm: {
         get form() {
           return document.querySelector('.add__form');
@@ -19,6 +28,9 @@ class UI {
         get value() {
           return document.querySelector('.add__value');
         }
+      },
+      get main() {
+        return document.querySelector('.main');
       },
       itemsList: {
         get inc() {
@@ -59,11 +71,23 @@ class UI {
     this.DOM.itemsList[item.type].insertAdjacentHTML('beforeend', item.html);
   }
 
+  removeItem(type, id) {
+    const item = document.getElementById(`${type}-${id}`);
+    item.parentNode.removeChild(item);
+  }
+
   clearFields() {
     this.DOM.addForm.description.value = '';
     this.DOM.addForm.value.value = '';
 
     this.DOM.addForm.description.focus();
+  }
+
+  updateBudget({ budget, inc, exp }) {
+    const { budgetValue, budgetIncome, budgetExpenses } = this.DOM;
+    budgetValue.textContent = `${budget < 0 ? '-' : '+'} ${Math.abs(budget)}`;
+    budgetIncome.textContent = inc;
+    budgetExpenses.textContent = exp;
   }
 }
 

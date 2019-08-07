@@ -20,6 +20,29 @@ class App {
     this.UI = new UI();
   }
 
+  calculateTotals(type) {
+    this.data.totals[type] = this.data.items[type].reduce((total, item) => {
+      return total + item.value;
+    }, 0);
+  }
+
+  calculateBudget() {
+    return this.data.totals.inc - this.data.totals.exp;
+  }
+
+  updateBudget() {
+    this.calculateTotals('inc');
+    this.calculateTotals('exp');
+
+    this.data.budget = this.calculateBudget();
+
+    this.UI.updateBudget({
+      budget: this.data.budget,
+      inc: this.data.totals.inc,
+      exp: this.data.totals.exp
+    });
+  }
+
   addItem({ type, description, value }) {
     try {
       this.UI.validateAddForm();
@@ -31,22 +54,48 @@ class App {
 
       this.UI.clearFields();
 
+      this.updateBudget();
+
       this.alert.render('success', 'Item successfully Added!');
     } catch (error) {
+      console.error(error);
       this.alert.render('error', error.message);
     }
   }
 
+  removeItem(itemId) {
+    const [type, id] = itemId.split('-');
+
+    const indexOfItem = this.data.items[type].findIndex(item => {
+      return item.id === `${type}-${id}`;
+    });
+
+    this.data.items[type].splice(indexOfItem, 1);
+
+    this.UI.removeItem(type, id);
+
+    this.updateBudget();
+  }
+
   setupEventListeners() {
-    this.UI.DOM.addForm.form.addEventListener('submit', event => {
+    const { DOM } = this.UI;
+
+    DOM.addForm.form.addEventListener('submit', event => {
       event.preventDefault();
       this.addItem(this.UI.addFormValues);
     });
 
-    this.UI.DOM.addForm.type.addEventListener('change', () => {
-      if (this.UI.DOM.addForm.type.value === 'exp')
-        this.UI.DOM.addForm.form.classList.add('red');
-      else this.UI.DOM.addForm.form.classList.remove('red');
+    DOM.addForm.type.addEventListener('change', () => {
+      if (DOM.addForm.type.value === 'exp')
+        DOM.addForm.form.classList.add('red');
+      else DOM.addForm.form.classList.remove('red');
+    });
+
+    DOM.main.addEventListener('click', event => {
+      const itemId = event.target.parentNode.parentNode.id;
+
+      if (itemId.startsWith('inc') || itemId.startsWith('exp'))
+        this.removeItem(itemId);
     });
 
     document.getElementById('debug').addEventListener('click', () => {
