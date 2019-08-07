@@ -26,6 +26,10 @@ class BudgetItem {
     </div>
   `;
   }
+
+  calculatePercentage(inc) {
+    this.percentage = parseInt((this.value / inc) * 100, 10);
+  }
 }
 
 export default BudgetItem;

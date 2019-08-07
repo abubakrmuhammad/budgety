@@ -1,38 +1,3 @@
-export function getCurrentMonthYear() {
-  const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'November',
-    'December'
-  ];
-
-  const now = new Date();
-
-  const monthNumber = now.getMonth();
-  const year = now.getFullYear();
-
-  const month = months[monthNumber];
-
-  return `${month} ${year}`;
-}
-
-export function alertMessage(message, type = 'success') {
-  alert.addEventListener('click', () => {
-    alert.classList.add('alert--timeout');
-
-    alert.addEventListener('animationend', () => {
-      alert.parentNode.removeChild(alert);
-    });
-  });
-}
-
 export class Alert {
   constructor() {
     const element = document.createElement('div');
@@ -82,4 +47,33 @@ export class Alert {
   remove() {
     this.element.classList.add('alert--hidden');
   }
+}
+
+export function getCurrentMonthYear() {
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'November',
+    'December'
+  ];
+
+  const now = new Date();
+
+  const monthNumber = now.getMonth();
+  const year = now.getFullYear();
+
+  const month = months[monthNumber];
+
+  return `${month} ${year}`;
+}
+
+export function formatPercentage(number) {
+  return number ? `${number}%` : '---';
 }

@@ -41,6 +41,29 @@ class App {
       inc: this.data.totals.inc,
       exp: this.data.totals.exp
     });
+
+    this.updatePercentages();
+  }
+
+  calculatePercentages(type) {
+    this.data.items[type].forEach(item => {
+      item.calculatePercentage(this.data.totals.inc);
+    });
+  }
+
+  updatePercentages() {
+    this.data.percentage = parseInt(
+      (this.data.totals.exp / this.data.totals.inc) * 100,
+      10
+    );
+
+    this.calculatePercentages('inc');
+    this.calculatePercentages('exp');
+
+    this.UI.updatePercentages({
+      totalPercentage: this.data.percentage,
+      exp: this.data.items.exp
+    });
   }
 
   addItem({ type, description, value }) {
@@ -89,6 +112,8 @@ class App {
       if (DOM.addForm.type.value === 'exp')
         DOM.addForm.form.classList.add('red');
       else DOM.addForm.form.classList.remove('red');
+
+      DOM.addForm.description.focus();
     });
 
     DOM.main.addEventListener('click', event => {
@@ -98,14 +123,16 @@ class App {
         this.removeItem(itemId);
     });
 
-    document.getElementById('debug').addEventListener('click', () => {
-      console.log(this.data);
-    });
+    // document.getElementById('debug').addEventListener('click', () => {
+    //   console.log(this.data);
+    // });
   }
 
   init() {
     console.log('App has been Started!');
     this.setupEventListeners();
+
+    this.UI.clearFields();
 
     this.UI.updateDate();
   }

@@ -1,4 +1,4 @@
-import { getCurrentMonthYear } from '../utils';
+import { getCurrentMonthYear, formatPercentage } from '../utils';
 
 class UI {
   constructor() {
@@ -14,6 +14,9 @@ class UI {
       },
       get budgetExpenses() {
         return document.querySelector('.budget__expenses--value');
+      },
+      get budgetExpensesPercentage() {
+        return document.querySelector('.budget__expenses--percentage');
       },
       addForm: {
         get form() {
@@ -88,6 +91,20 @@ class UI {
     budgetValue.textContent = `${budget < 0 ? '-' : '+'} ${Math.abs(budget)}`;
     budgetIncome.textContent = inc;
     budgetExpenses.textContent = exp;
+  }
+
+  updatePercentages({ totalPercentage, exp }) {
+    this.DOM.budgetExpensesPercentage.textContent = formatPercentage(
+      totalPercentage
+    );
+
+    exp.forEach(expense => {
+      const percentage = document
+        .getElementById(expense.id)
+        .querySelector('.item__percentage');
+
+      percentage.textContent = formatPercentage(expense.percentage);
+    });
   }
 }
 
