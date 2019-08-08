@@ -259,8 +259,8 @@ body {
   flex-direction: column;
 }
 .income .item {
-  -webkit-animation: slideInLeft 0.7s ease;
-          animation: slideInLeft 0.7s ease;
+  -webkit-animation: slideInLeft 0.7s ease both;
+          animation: slideInLeft 0.7s ease both;
 }
 .income .item.removed {
   -webkit-animation: fadeOut 0.7s ease !important;
@@ -298,8 +298,8 @@ body {
   flex-direction: column;
 }
 .expenses .item {
-  -webkit-animation: slideInRight 0.7s ease;
-          animation: slideInRight 0.7s ease;
+  -webkit-animation: slideInRight 0.7s ease both;
+          animation: slideInRight 0.7s ease both;
 }
 .expenses .item.removed {
   -webkit-animation: fadeOut 0.7s ease !important;
@@ -320,6 +320,14 @@ body {
   padding: 1rem;
   border-top: 1px solid #ebebeb;
   transition: all 0.4s ease;
+}
+.item.retrieved {
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+}
+.item.new {
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
 }
 .item:last-child {
   border-bottom: 1px solid #ebebeb;
@@ -504,33 +512,57 @@ body {
 @-webkit-keyframes slideInLeft {
   from {
     transform: translateX(-100%);
+    opacity: 0;
+    visibility: hidden;
+  }
+  80% {
+    opacity: 1;
   }
   to {
     transform: translateX(0);
+    visibility: visible;
   }
 }
 @keyframes slideInLeft {
   from {
     transform: translateX(-100%);
+    opacity: 0;
+    visibility: hidden;
+  }
+  80% {
+    opacity: 1;
   }
   to {
     transform: translateX(0);
+    visibility: visible;
   }
 }
 @-webkit-keyframes slideInRight {
   from {
     transform: translateX(100%);
+    opacity: 0;
+    visibility: hidden;
+  }
+  80% {
+    opacity: 1;
   }
   to {
     transform: translateX(0);
+    visibility: visible;
   }
 }
 @keyframes slideInRight {
   from {
     transform: translateX(100%);
+    opacity: 0;
+    visibility: hidden;
+  }
+  80% {
+    opacity: 1;
   }
   to {
     transform: translateX(0);
+    visibility: visible;
   }
 }
 

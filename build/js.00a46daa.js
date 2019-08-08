@@ -7209,7 +7209,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.getCurrentMonthYear = getCurrentMonthYear;
 exports.formatPercentage = formatPercentage;
 exports.formatCurrency = formatCurrency;
-exports.Alert = void 0;
+exports.capitalizeFirstLetter = capitalizeFirstLetter;
+exports.MyStorage = exports.Alert = void 0;
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
@@ -7292,6 +7293,56 @@ function () {
 
 exports.Alert = Alert;
 
+var MyStorage =
+/*#__PURE__*/
+function () {
+  function MyStorage() {
+    _classCallCheck(this, MyStorage);
+  }
+
+  _createClass(MyStorage, [{
+    key: "saveData",
+    value: function saveData(data) {
+      localStorage.setItem(btoa('data'), btoa(JSON.stringify(data)));
+    }
+  }, {
+    key: "parseItems",
+    value: function parseItems(items, BudgetItem) {
+      var inc = items.inc.map(function (income) {
+        var type = income.type,
+            description = income.description,
+            value = income.value,
+            percentage = income.percentage,
+            id = income.id;
+        return new BudgetItem(type, description, value, percentage, id, true);
+      });
+      var exp = items.exp.map(function (expense) {
+        var type = expense.type,
+            description = expense.description,
+            value = expense.value,
+            percentage = expense.percentage,
+            id = expense.id;
+        return new BudgetItem(type, description, value, percentage, id, true);
+      });
+      return {
+        inc: inc,
+        exp: exp
+      };
+    }
+  }, {
+    key: "retrieveData",
+    value: function retrieveData() {
+      var data = localStorage.getItem(btoa('data'));
+      if (data) return JSON.parse(atob(data));
+      return null;
+    }
+  }]);
+
+  return MyStorage;
+}();
+
+exports.MyStorage = MyStorage;
+
 function getCurrentMonthYear() {
   var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'November', 'December'];
   var now = new Date();
@@ -7330,7 +7381,9 @@ function formatCurrency(number) {
   return formattedNumber;
 }
 
-formatCurrency(56.7685);
+function capitalizeFirstLetter(string) {
+  return "".concat(string.slice(0, 1).toUpperCase()).concat(string.slice(1));
+}
 },{}],"js/models/BudgetItem.js":[function(require,module,exports) {
 "use strict";
 
@@ -7354,14 +7407,17 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 var BudgetItem =
 /*#__PURE__*/
 function () {
-  function BudgetItem(type, description, value) {
+  function BudgetItem(type, description, value, percentage, id) {
+    var retrieved = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : false;
+
     _classCallCheck(this, BudgetItem);
 
-    this.id = (0, _uniqid.default)("".concat(type, "-"));
+    this.id = id || (0, _uniqid.default)("".concat(type, "-"));
     this.type = type;
     this.description = description;
     this.value = value;
-    this.percentage = null;
+    this.percentage = percentage || null;
+    this.retrieved = retrieved;
   }
 
   _createClass(BudgetItem, [{
@@ -7372,7 +7428,7 @@ function () {
   }, {
     key: "html",
     get: function get() {
-      return "\n    <div class=\"item\" id=\"".concat(this.id, "\">\n      <div class=\"item__description\">").concat(this.description, "</div>\n      <div class=\"item__value\">").concat((0, _utils.formatCurrency)(this.value), "</div>\n      <div class=\"item__percentage ").concat(this.type, "\">").concat(this.percentage || '---', "</div>\n      <button class=\"item__delete\">\n        <i class=\"ion-ios-close-outline\"></i>\n      </button>\n    </div>\n  ");
+      return "\n    <div class=\"item ".concat(this.retrieved ? 'retrieved' : 'new', "\" id=\"").concat(this.id, "\">\n      <div class=\"item__description\">").concat(this.description, "</div>\n      <div class=\"item__value\">").concat((0, _utils.formatCurrency)(this.value), "</div>\n      <div class=\"item__percentage ").concat(this.type, "\">").concat(this.percentage || '---', "</div>\n      <button class=\"item__delete\">\n        <i class=\"ion-ios-close-outline\"></i>\n      </button>\n    </div>\n  ");
     }
   }]);
 
@@ -7623,6 +7679,7 @@ function () {
     };
     this.alert = new _utils.Alert();
     this.UI = new _UI.default();
+    this.storage = new _utils.MyStorage();
   }
 
   _createClass(App, [{
@@ -7677,6 +7734,29 @@ function () {
       this.UI.updateItemsCount(this.data.items);
     }
   }, {
+    key: "saveData",
+    value: function saveData() {
+      this.storage.saveData(this.data);
+    }
+  }, {
+    key: "retrieveData",
+    value: function retrieveData() {
+      var retrievedData = this.storage.retrieveData();
+      if (!retrievedData) return;
+      var parsedItems = this.storage.parseItems(retrievedData.items, _BudgetItem.default);
+      retrievedData.items = parsedItems;
+      this.data = retrievedData;
+    }
+  }, {
+    key: "renderRetrievedItems",
+    value: function renderRetrievedItems(type) {
+      var _this2 = this;
+
+      this.data.items[type].forEach(function (item) {
+        _this2.UI.renderItem(item);
+      });
+    }
+  }, {
     key: "addItem",
     value: function addItem(_ref) {
       var type = _ref.type,
@@ -7691,7 +7771,8 @@ function () {
         this.UI.clearFields();
         this.updateBudget();
         this.updateItemsCount();
-        this.alert.render('success', 'Item successfully Added!');
+        this.saveData();
+        this.alert.render('success', "".concat(type === 'inc' ? 'Income' : 'Expense', " successfully Added!"));
       } catch (error) {
         console.error(error);
         this.alert.render('error', error.message);
@@ -7712,18 +7793,19 @@ function () {
       this.UI.removeItem(type, id);
       this.updateBudget();
       this.updateItemsCount();
-      this.alert.render('success', 'Item Deleted Successfully!');
+      this.saveData();
+      this.alert.render('success', "".concat(type === 'inc' ? 'Income' : 'Expense', " Deleted Successfully!"));
     }
   }, {
     key: "setupEventListeners",
     value: function setupEventListeners() {
-      var _this2 = this;
+      var _this3 = this;
 
       var DOM = this.UI.DOM;
       DOM.addForm.form.addEventListener('submit', function (event) {
         event.preventDefault();
 
-        _this2.addItem(_this2.UI.addFormValues);
+        _this3.addItem(_this3.UI.addFormValues);
       });
       DOM.addForm.type.addEventListener('change', function () {
         if (DOM.addForm.type.value === 'exp') DOM.addForm.form.classList.add('red');else DOM.addForm.form.classList.remove('red');
@@ -7731,16 +7813,19 @@ function () {
       });
       DOM.main.addEventListener('click', function (event) {
         var itemId = event.target.parentNode.parentNode.id;
-        if (itemId.startsWith('inc') || itemId.startsWith('exp')) _this2.removeItem(itemId);
-      }); // document.getElementById('debug').addEventListener('click', () => {
-      //   console.log(this.data);
-      // });
+        if (itemId.startsWith('inc') || itemId.startsWith('exp')) _this3.removeItem(itemId);
+      });
     }
   }, {
     key: "init",
     value: function init() {
       console.log('App has been Started!');
       this.setupEventListeners();
+      this.retrieveData();
+      this.renderRetrievedItems('inc');
+      this.renderRetrievedItems('exp');
+      this.updateBudget();
+      this.updateItemsCount();
       this.UI.clearFields();
       this.UI.updateDate();
     }
@@ -8081,7 +8166,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "10805" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "2350" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
