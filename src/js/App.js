@@ -62,7 +62,8 @@ class App {
 
     this.UI.updatePercentages({
       totalPercentage: this.data.percentage,
-      exp: this.data.items.exp
+      exp: this.data.items.exp,
+      inc: this.data.items.inc
     });
   }
 

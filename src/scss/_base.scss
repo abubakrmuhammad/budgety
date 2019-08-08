@@ -45,6 +45,11 @@ body {
   padding: 6rem;
 }
 
+::selection {
+  background-color: #f7ce68;
+  color: #fff;
+}
+
 #debug {
   background-color: #fbab7e;
   border: 1px solid darken(#fbab7e, 2);

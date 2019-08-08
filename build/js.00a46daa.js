@@ -7362,9 +7362,7 @@ function () {
     this.description = description;
     this.value = value;
     this.percentage = null;
-  } // get percentage() {
-  // }
-
+  }
 
   _createClass(BudgetItem, [{
     key: "calculatePercentage",
@@ -7392,6 +7390,14 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _utils = require("../utils");
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -7507,18 +7513,20 @@ function () {
           budgetIncome = _this$DOM.budgetIncome,
           budgetExpenses = _this$DOM.budgetExpenses;
       budgetValue.textContent = "\n    ".concat(budget < 0 ? '-' : '+', " ").concat((0, _utils.formatCurrency)(Math.abs(budget)));
-      budgetIncome.textContent = inc;
-      budgetExpenses.textContent = exp;
+      budgetIncome.textContent = (0, _utils.formatCurrency)(inc);
+      budgetExpenses.textContent = (0, _utils.formatCurrency)(exp);
     }
   }, {
     key: "updatePercentages",
     value: function updatePercentages(_ref2) {
       var totalPercentage = _ref2.totalPercentage,
-          exp = _ref2.exp;
+          exp = _ref2.exp,
+          inc = _ref2.inc;
       this.DOM.budgetExpensesPercentage.textContent = (0, _utils.formatPercentage)(totalPercentage);
-      exp.forEach(function (expense) {
-        var percentage = document.getElementById(expense.id).querySelector('.item__percentage');
-        percentage.textContent = (0, _utils.formatPercentage)(expense.percentage);
+      var items = [].concat(_toConsumableArray(exp), _toConsumableArray(inc));
+      items.forEach(function (item) {
+        var percentage = document.getElementById(item.id).querySelector('.item__percentage');
+        percentage.textContent = (0, _utils.formatPercentage)(item.percentage);
       });
     }
   }, {
@@ -7635,7 +7643,8 @@ function () {
       this.calculatePercentages('exp');
       this.UI.updatePercentages({
         totalPercentage: this.data.percentage,
-        exp: this.data.items.exp
+        exp: this.data.items.exp,
+        inc: this.data.items.inc
       });
     }
   }, {
@@ -8040,7 +8049,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "11638" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "2522" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

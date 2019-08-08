@@ -28,6 +28,16 @@ body {
   padding: 6rem;
 }
 
+::-moz-selection {
+  background-color: #f7ce68;
+  color: #fff;
+}
+
+::selection {
+  background-color: #f7ce68;
+  color: #fff;
+}
+
 #debug {
   background-color: #fbab7e;
   border: 1px solid #fba574;
@@ -286,16 +296,19 @@ body {
 }
 .item__percentage {
   margin-left: 1rem;
-  color: #e74c3c;
   font-size: 1rem;
   min-width: 2.5rem;
   border-radius: 3px;
-  background-color: rgba(231, 76, 60, 0.2);
   text-align: center;
   justify-self: center;
 }
 .item__percentage.inc {
-  display: none;
+  background-color: rgba(26, 188, 156, 0.2);
+  color: #1abc9c;
+}
+.item__percentage.exp {
+  background-color: rgba(231, 76, 60, 0.2);
+  color: #e74c3c;
 }
 
 .alert {

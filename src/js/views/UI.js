@@ -96,21 +96,23 @@ class UI {
     budgetValue.textContent = `
     ${budget < 0 ? '-' : '+'} ${formatCurrency(Math.abs(budget))}`;
 
-    budgetIncome.textContent = inc;
-    budgetExpenses.textContent = exp;
+    budgetIncome.textContent = formatCurrency(inc);
+    budgetExpenses.textContent = formatCurrency(exp);
   }
 
-  updatePercentages({ totalPercentage, exp }) {
+  updatePercentages({ totalPercentage, exp, inc }) {
     this.DOM.budgetExpensesPercentage.textContent = formatPercentage(
       totalPercentage
     );
 
-    exp.forEach(expense => {
+    const items = [...exp, ...inc];
+
+    items.forEach(item => {
       const percentage = document
-        .getElementById(expense.id)
+        .getElementById(item.id)
         .querySelector('.item__percentage');
 
-      percentage.textContent = formatPercentage(expense.percentage);
+      percentage.textContent = formatPercentage(item.percentage);
     });
   }
 }

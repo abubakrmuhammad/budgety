@@ -255,16 +255,20 @@
 
   &__percentage {
     margin-left: 1rem;
-    color: $color-red;
     font-size: 1rem;
     min-width: 2.5rem;
     border-radius: $border-radius-default;
-    background-color: rgba($color-red, 0.2);
     text-align: center;
     justify-self: center;
 
     &.inc {
-      display: none;
+      background-color: rgba($color-green, 0.2);
+      color: $color-green;
+    }
+
+    &.exp {
+      background-color: rgba($color-red, 0.2);
+      color: $color-red;
     }
   }
 }

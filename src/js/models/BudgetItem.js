@@ -10,10 +10,6 @@ class BudgetItem {
     this.percentage = null;
   }
 
-  // get percentage() {
-
-  // }
-
   get html() {
     return `
     <div class="item" id="${this.id}">
