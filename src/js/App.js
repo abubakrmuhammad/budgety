@@ -92,9 +92,11 @@ class App {
 
   renderRetrievedItems(type) {
     this.data.items[type].forEach((item, i) => {
-      setTimeout(() => {
-        this.UI.renderItem(item);
-      }, i * 200);
+      const itemId = this.UI.renderItem(item);
+      const itemEl = document.getElementById(itemId);
+      const currentDelay = getComputedStyle(itemEl).animationDelay.slice(0, -1);
+
+      itemEl.style.animationDelay = `${i * 0.15 + parseInt(currentDelay, 10)}s`;
     });
   }
 

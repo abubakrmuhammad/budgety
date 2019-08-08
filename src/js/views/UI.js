@@ -85,6 +85,8 @@ class UI {
 
   renderItem(item) {
     this.DOM.itemsList[item.type].insertAdjacentHTML('beforeend', item.html);
+
+    return item.id;
   }
 
   removeItem(type, id) {

@@ -7554,6 +7554,7 @@ function () {
     key: "renderItem",
     value: function renderItem(item) {
       this.DOM.itemsList[item.type].insertAdjacentHTML('beforeend', item.html);
+      return item.id;
     }
   }, {
     key: "removeItem",
@@ -7753,9 +7754,11 @@ function () {
       var _this2 = this;
 
       this.data.items[type].forEach(function (item, i) {
-        setTimeout(function () {
-          _this2.UI.renderItem(item);
-        }, i * 200);
+        var itemId = _this2.UI.renderItem(item);
+
+        var itemEl = document.getElementById(itemId);
+        var currentDelay = getComputedStyle(itemEl).animationDelay.slice(0, -1);
+        itemEl.style.animationDelay = "".concat(i * 0.15 + parseInt(currentDelay, 10), "s");
       });
     }
   }, {
