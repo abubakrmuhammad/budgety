@@ -191,7 +191,7 @@
   }
 
   .item {
-    animation: slideInLeft 0.7s ease;
+    animation: slideInLeft 0.7s ease both;
 
     &.removed {
       animation: fadeOut 0.7s ease !important;
@@ -239,7 +239,7 @@
   }
 
   .item {
-    animation: slideInRight 0.7s ease;
+    animation: slideInRight 0.7s ease both;
 
     &.removed {
       animation: fadeOut 0.7s ease !important;
@@ -268,6 +268,14 @@
   padding: 1rem;
   border-top: 1px solid darken($color-gray-light-2, 1);
   transition: all 0.4s ease;
+
+  &.retrieved {
+    animation-delay: 1s;
+  }
+
+  &.new {
+    animation-delay: 0s;
+  }
 
   &:last-child {
     border-bottom: 1px solid darken($color-gray-light-2, 1);

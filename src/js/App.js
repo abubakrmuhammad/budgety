@@ -1,6 +1,6 @@
 import BudgetItem from './models/BudgetItem';
 import UI from './views/UI';
-import { Alert } from './utils';
+import { Alert, MyStorage, capitalizeFirstLetter } from './utils';
 
 class App {
   constructor() {
@@ -18,6 +18,7 @@ class App {
     };
     this.alert = new Alert();
     this.UI = new UI();
+    this.storage = new MyStorage();
   }
 
   calculateTotals(type) {
@@ -71,6 +72,30 @@ class App {
     this.UI.updateItemsCount(this.data.items);
   }
 
+  saveData() {
+    this.storage.saveData(this.data);
+  }
+
+  retrieveData() {
+    const retrievedData = this.storage.retrieveData();
+    if (!retrievedData) return;
+
+    const parsedItems = this.storage.parseItems(
+      retrievedData.items,
+      BudgetItem
+    );
+
+    retrievedData.items = parsedItems;
+
+    this.data = retrievedData;
+  }
+
+  renderRetrievedItems(type) {
+    this.data.items[type].forEach(item => {
+      this.UI.renderItem(item);
+    });
+  }
+
   addItem({ type, description, value }) {
     try {
       this.UI.validateAddForm();
@@ -86,7 +111,12 @@ class App {
 
       this.updateItemsCount();
 
-      this.alert.render('success', 'Item successfully Added!');
+      this.saveData();
+
+      this.alert.render(
+        'success',
+        `${type === 'inc' ? 'Income' : 'Expense'} successfully Added!`
+      );
     } catch (error) {
       console.error(error);
       this.alert.render('error', error.message);
@@ -108,7 +138,12 @@ class App {
 
     this.updateItemsCount();
 
-    this.alert.render('success', 'Item Deleted Successfully!');
+    this.saveData();
+
+    this.alert.render(
+      'success',
+      `${type === 'inc' ? 'Income' : 'Expense'} Deleted Successfully!`
+    );
   }
 
   setupEventListeners() {
@@ -133,15 +168,19 @@ class App {
       if (itemId.startsWith('inc') || itemId.startsWith('exp'))
         this.removeItem(itemId);
     });
-
-    // document.getElementById('debug').addEventListener('click', () => {
-    //   console.log(this.data);
-    // });
   }
 
   init() {
     console.log('App has been Started!');
     this.setupEventListeners();
+
+    this.retrieveData();
+
+    this.renderRetrievedItems('inc');
+    this.renderRetrievedItems('exp');
+
+    this.updateBudget();
+    this.updateItemsCount();
 
     this.UI.clearFields();
 

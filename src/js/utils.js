@@ -49,6 +49,34 @@ export class Alert {
   }
 }
 
+export class MyStorage {
+  constructor() {}
+
+  saveData(data) {
+    localStorage.setItem(btoa('data'), btoa(JSON.stringify(data)));
+  }
+
+  parseItems(items, BudgetItem) {
+    const inc = items.inc.map(income => {
+      const { type, description, value, percentage, id } = income;
+      return new BudgetItem(type, description, value, percentage, id, true);
+    });
+    const exp = items.exp.map(expense => {
+      const { type, description, value, percentage, id } = expense;
+      return new BudgetItem(type, description, value, percentage, id, true);
+    });
+
+    return { inc, exp };
+  }
+
+  retrieveData() {
+    const data = localStorage.getItem(btoa('data'));
+
+    if (data) return JSON.parse(atob(data));
+    return null;
+  }
+}
+
 export function getCurrentMonthYear() {
   const months = [
     'January',
@@ -107,4 +135,6 @@ export function formatCurrency(number) {
   return formattedNumber;
 }
 
-formatCurrency(56.7685);
+export function capitalizeFirstLetter(string) {
+  return `${string.slice(0, 1).toUpperCase()}${string.slice(1)}`;
+}
