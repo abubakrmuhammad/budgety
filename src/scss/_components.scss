@@ -12,11 +12,13 @@
 
   &__title {
     font-size: 1.8rem;
+    animation: fadeInUp 0.8s ease;
   }
 
   &__value {
     font-size: 4.5rem;
     margin: 1rem auto;
+    animation: fadeInUp 0.8s ease;
   }
 
   &__income,
@@ -29,6 +31,7 @@
     font-size: 1.4rem;
     border-radius: 1px;
     text-transform: uppercase;
+    animation: popIn 0.5s ease 0.5s both;
 
     &--text {
       grid-column: 2 / 3;
@@ -79,6 +82,8 @@
 .add {
   background-color: darken($color-gray-light-1, 0.4);
   border-bottom: 2px solid $color-gray-light-2;
+  overflow: hidden;
+  animation: slideDown 0.5s ease 0.7s both;
 
   &__form {
     height: 100%;
@@ -171,6 +176,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    animation: fadeInUp 0.8s ease;
   }
 
   &__count {
@@ -185,6 +191,12 @@
   }
 
   .item {
+    animation: slideInLeft 0.7s ease;
+
+    &.removed {
+      animation: fadeOut 0.7s ease !important;
+    }
+
     &__value,
     &__delete {
       color: $color-green;
@@ -212,6 +224,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    animation: fadeInUp 0.8s ease;
   }
 
   &__count {
@@ -226,6 +239,12 @@
   }
 
   .item {
+    animation: slideInRight 0.7s ease;
+
+    &.removed {
+      animation: fadeOut 0.7s ease !important;
+    }
+
     &__value,
     &__delete {
       color: $color-red;
@@ -248,6 +267,7 @@
   align-items: center;
   padding: 1rem;
   border-top: 1px solid darken($color-gray-light-2, 1);
+  transition: all 0.4s ease;
 
   &:last-child {
     border-bottom: 1px solid darken($color-gray-light-2, 1);

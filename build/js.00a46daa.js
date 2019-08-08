@@ -7503,7 +7503,13 @@ function () {
     key: "removeItem",
     value: function removeItem(type, id) {
       var item = document.getElementById("".concat(type, "-").concat(id));
-      item.parentNode.removeChild(item);
+
+      if (!item.classList.contains('removed')) {
+        item.classList.add('removed');
+        item.addEventListener('animationend', function () {
+          item.parentNode.removeChild(item);
+        });
+      }
     }
   }, {
     key: "clearFields",
@@ -8075,7 +8081,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "2522" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "10805" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

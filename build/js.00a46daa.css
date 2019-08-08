@@ -68,6 +68,7 @@ body {
   background-color: #f7f7f7;
   border-radius: 5px;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.19), 0 0.6rem 0.6rem rgba(0, 0, 0, 0.23);
+  overflow: hidden;
 }
 
 .main {
@@ -97,10 +98,14 @@ body {
 }
 .budget__title {
   font-size: 1.8rem;
+  -webkit-animation: fadeInUp 0.8s ease;
+          animation: fadeInUp 0.8s ease;
 }
 .budget__value {
   font-size: 4.5rem;
   margin: 1rem auto;
+  -webkit-animation: fadeInUp 0.8s ease;
+          animation: fadeInUp 0.8s ease;
 }
 .budget__income, .budget__expenses {
   display: grid;
@@ -111,6 +116,8 @@ body {
   font-size: 1.4rem;
   border-radius: 1px;
   text-transform: uppercase;
+  -webkit-animation: popIn 0.5s ease 0.5s both;
+          animation: popIn 0.5s ease 0.5s both;
 }
 .budget__income--text, .budget__expenses--text {
   grid-column: 2/3;
@@ -148,6 +155,9 @@ body {
 .add {
   background-color: #f6f6f6;
   border-bottom: 2px solid #eee;
+  overflow: hidden;
+  -webkit-animation: slideDown 0.5s ease 0.7s both;
+          animation: slideDown 0.5s ease 0.7s both;
 }
 .add__form {
   height: 100%;
@@ -234,6 +244,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  -webkit-animation: fadeInUp 0.8s ease;
+          animation: fadeInUp 0.8s ease;
 }
 .income__count {
   display: inline-block;
@@ -243,6 +255,14 @@ body {
 .income__list {
   display: flex;
   flex-direction: column;
+}
+.income .item {
+  -webkit-animation: slideInLeft 0.7s ease;
+          animation: slideInLeft 0.7s ease;
+}
+.income .item.removed {
+  -webkit-animation: fadeOut 0.7s ease !important;
+          animation: fadeOut 0.7s ease !important;
 }
 .income .item__value, .income .item__delete {
   color: #1abc9c;
@@ -263,6 +283,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  -webkit-animation: fadeInUp 0.8s ease;
+          animation: fadeInUp 0.8s ease;
 }
 .expenses__count {
   display: inline-block;
@@ -272,6 +294,14 @@ body {
 .expenses__list {
   display: flex;
   flex-direction: column;
+}
+.expenses .item {
+  -webkit-animation: slideInRight 0.7s ease;
+          animation: slideInRight 0.7s ease;
+}
+.expenses .item.removed {
+  -webkit-animation: fadeOut 0.7s ease !important;
+          animation: fadeOut 0.7s ease !important;
 }
 .expenses .item__value, .expenses .item__delete {
   color: #e74c3c;
@@ -287,6 +317,7 @@ body {
   align-items: center;
   padding: 1rem;
   border-top: 1px solid #ebebeb;
+  transition: all 0.4s ease;
 }
 .item:last-child {
   border-bottom: 1px solid #ebebeb;
@@ -392,6 +423,112 @@ body {
   }
   to {
     top: -10rem;
+  }
+}
+@-webkit-keyframes fadeInUp {
+  from {
+    transform: translateY(5rem);
+    opacity: 0;
+  }
+  80% {
+    opacity: 0.7;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes fadeInUp {
+  from {
+    transform: translateY(5rem);
+    opacity: 0;
+  }
+  80% {
+    opacity: 0.7;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes popIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes popIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@-webkit-keyframes slideDown {
+  from {
+    height: 0;
+  }
+  to {
+    height: 100%;
+  }
+}
+@keyframes slideDown {
+  from {
+    height: 0;
+  }
+  to {
+    height: 100%;
+  }
+}
+@-webkit-keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@-webkit-keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
   }
 }
 

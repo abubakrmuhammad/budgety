@@ -89,7 +89,14 @@ class UI {
 
   removeItem(type, id) {
     const item = document.getElementById(`${type}-${id}`);
-    item.parentNode.removeChild(item);
+
+    if (!item.classList.contains('removed')) {
+      item.classList.add('removed');
+
+      item.addEventListener('animationend', () => {
+        item.parentNode.removeChild(item);
+      });
+    }
   }
 
   clearFields() {
