@@ -193,6 +193,10 @@ body {
 .add__type::placeholder, .add__description::placeholder, .add__value::placeholder {
   color: #777;
 }
+.add__type {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
 .add__description {
   flex: 0 0 30%;
 }
@@ -227,6 +231,14 @@ body {
   font-weight: 300;
   margin-bottom: 1.5rem;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.income__count {
+  display: inline-block;
+  font-size: 1.5rem;
+  margin-left: 0.7rem;
 }
 .income__list {
   display: flex;
@@ -248,6 +260,14 @@ body {
   font-weight: 300;
   margin-bottom: 1.5rem;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.expenses__count {
+  display: inline-block;
+  font-size: 1.5rem;
+  margin-left: 0.7rem;
 }
 .expenses__list {
   display: flex;

@@ -42,14 +42,10 @@
       <section class="add">
         <form autocomplete="off" class="add__form">
           <select class="add__type">
-            <option value="inc">+</option>
-            <option value="exp">-</option>
+            <option value="inc">Income</option>
+            <option value="exp">Expense</option>
           </select>
-          <input
-            type="text"
-            class="add__description"
-            placeholder="Add Description"
-          />
+          <input type="text" class="add__description" placeholder="Add Title" />
           <input
             type="number"
             class="add__value"
@@ -64,30 +60,34 @@
 
       <main class="main">
         <div class="income">
-          <h2 class="income__title">Income</h2>
+          <h2 class="income__title">
+            Income <span class="income__count">(0)</span>
+          </h2>
           <div class="income__list">
-            <div class="item" id="income-0">
+            <!-- <div class="item" id="income-0">
               <div class="item__description">Salary</div>
               <div class="item__value">2,100.00</div>
               <div class="item__percentage inc">21%</div>
               <button class="item__delete">
                 <i class="ion-ios-close-outline"></i>
               </button>
-            </div>
+            </div> -->
           </div>
         </div>
 
         <div class="expenses">
-          <h2 class="expenses__title">Expenses</h2>
+          <h2 class="expenses__title">
+            Expenses <span class="expenses__count">(0)</span>
+          </h2>
           <div class="expenses__list">
-            <div class="item" id="expense-0">
+            <!-- <div class="item" id="expense-0">
               <div class="item__description">Apartment rent</div>
               <div class="item__value">900.00</div>
               <div class="item__percentage exp">21%</div>
               <button class="item__delete">
                 <i class="ion-ios-close-outline"></i>
               </button>
-            </div>
+            </div> -->
           </div>
         </div>
       </main>

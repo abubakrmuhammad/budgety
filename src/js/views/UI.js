@@ -22,6 +22,15 @@ class UI {
       get budgetExpensesPercentage() {
         return document.querySelector('.budget__expenses--percentage');
       },
+      counts: {
+        get income() {
+          return document.querySelector('.income__count');
+        },
+
+        get expenses() {
+          return document.querySelector('.expenses__count');
+        }
+      },
       addForm: {
         get form() {
           return document.querySelector('.add__form');
@@ -114,6 +123,11 @@ class UI {
 
       percentage.textContent = formatPercentage(item.percentage);
     });
+  }
+
+  updateItemsCount({ inc, exp }) {
+    this.DOM.counts.income.textContent = `(${inc.length})`;
+    this.DOM.counts.expenses.textContent = `(${exp.length})`;
   }
 }
 

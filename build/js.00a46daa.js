@@ -7432,6 +7432,16 @@ function () {
         return document.querySelector('.budget__expenses--percentage');
       },
 
+      counts: {
+        get income() {
+          return document.querySelector('.income__count');
+        },
+
+        get expenses() {
+          return document.querySelector('.expenses__count');
+        }
+
+      },
       addForm: {
         get form() {
           return document.querySelector('.add__form');
@@ -7528,6 +7538,14 @@ function () {
         var percentage = document.getElementById(item.id).querySelector('.item__percentage');
         percentage.textContent = (0, _utils.formatPercentage)(item.percentage);
       });
+    }
+  }, {
+    key: "updateItemsCount",
+    value: function updateItemsCount(_ref3) {
+      var inc = _ref3.inc,
+          exp = _ref3.exp;
+      this.DOM.counts.income.textContent = "(".concat(inc.length, ")");
+      this.DOM.counts.expenses.textContent = "(".concat(exp.length, ")");
     }
   }, {
     key: "addFormValues",
@@ -7648,6 +7666,11 @@ function () {
       });
     }
   }, {
+    key: "updateItemsCount",
+    value: function updateItemsCount() {
+      this.UI.updateItemsCount(this.data.items);
+    }
+  }, {
     key: "addItem",
     value: function addItem(_ref) {
       var type = _ref.type,
@@ -7661,6 +7684,7 @@ function () {
         this.UI.renderItem(budgetItem);
         this.UI.clearFields();
         this.updateBudget();
+        this.updateItemsCount();
         this.alert.render('success', 'Item successfully Added!');
       } catch (error) {
         console.error(error);
@@ -7681,6 +7705,8 @@ function () {
       this.data.items[type].splice(indexOfItem, 1);
       this.UI.removeItem(type, id);
       this.updateBudget();
+      this.updateItemsCount();
+      this.alert.render('success', 'Item Deleted Successfully!');
     }
   }, {
     key: "setupEventListeners",

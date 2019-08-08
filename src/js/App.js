@@ -67,6 +67,10 @@ class App {
     });
   }
 
+  updateItemsCount() {
+    this.UI.updateItemsCount(this.data.items);
+  }
+
   addItem({ type, description, value }) {
     try {
       this.UI.validateAddForm();
@@ -79,6 +83,8 @@ class App {
       this.UI.clearFields();
 
       this.updateBudget();
+
+      this.updateItemsCount();
 
       this.alert.render('success', 'Item successfully Added!');
     } catch (error) {
@@ -99,6 +105,10 @@ class App {
     this.UI.removeItem(type, id);
 
     this.updateBudget();
+
+    this.updateItemsCount();
+
+    this.alert.render('success', 'Item Deleted Successfully!');
   }
 
   setupEventListeners() {

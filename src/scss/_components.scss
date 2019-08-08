@@ -124,6 +124,11 @@
     }
   }
 
+  &__type {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+  }
+
   &__description {
     flex: 0 0 30%;
   }
@@ -163,6 +168,15 @@
     font-weight: 300;
     margin-bottom: 1.5rem;
     text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  &__count {
+    display: inline-block;
+    font-size: 1.5rem;
+    margin-left: 0.7rem;
   }
 
   &__list {
@@ -195,6 +209,15 @@
     font-weight: 300;
     margin-bottom: 1.5rem;
     text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  &__count {
+    display: inline-block;
+    font-size: 1.5rem;
+    margin-left: 0.7rem;
   }
 
   &__list {
