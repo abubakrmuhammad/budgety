@@ -91,8 +91,10 @@ class App {
   }
 
   renderRetrievedItems(type) {
-    this.data.items[type].forEach(item => {
-      this.UI.renderItem(item);
+    this.data.items[type].forEach((item, i) => {
+      setTimeout(() => {
+        this.UI.renderItem(item);
+      }, i * 200);
     });
   }
 

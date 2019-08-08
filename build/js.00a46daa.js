@@ -7752,8 +7752,10 @@ function () {
     value: function renderRetrievedItems(type) {
       var _this2 = this;
 
-      this.data.items[type].forEach(function (item) {
-        _this2.UI.renderItem(item);
+      this.data.items[type].forEach(function (item, i) {
+        setTimeout(function () {
+          _this2.UI.renderItem(item);
+        }, i * 200);
       });
     }
   }, {

@@ -61,6 +61,7 @@ export class MyStorage {
       const { type, description, value, percentage, id } = income;
       return new BudgetItem(type, description, value, percentage, id, true);
     });
+
     const exp = items.exp.map(expense => {
       const { type, description, value, percentage, id } = expense;
       return new BudgetItem(type, description, value, percentage, id, true);
