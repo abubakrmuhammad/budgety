@@ -12,13 +12,13 @@
 
   &__title {
     font-size: 1.8rem;
-    animation: fadeInUp 0.8s ease;
+    animation: fadeInUp 0.8s ease 0.4s both;
   }
 
   &__value {
     font-size: 4.5rem;
     margin: 1rem auto;
-    animation: fadeInUp 0.8s ease;
+    animation: fadeInUp 0.8s ease 0.4s both;
   }
 
   &__income,
@@ -31,7 +31,7 @@
     font-size: 1.4rem;
     border-radius: 1px;
     text-transform: uppercase;
-    animation: popIn 0.5s ease 0.5s both;
+    animation: popIn 0.5s ease 0.8s both;
 
     &--text {
       grid-column: 2 / 3;
@@ -83,7 +83,7 @@
   background-color: darken($color-gray-light-1, 0.4);
   border-bottom: 2px solid $color-gray-light-2;
   overflow: hidden;
-  animation: slideDown 0.5s ease 0.7s both;
+  animation: slideDown 0.5s ease 0.8s both;
 
   &__form {
     height: 100%;
@@ -176,7 +176,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    animation: fadeInUp 0.8s ease;
+    animation: fadeInUp 0.8s ease 0.4s both;
   }
 
   &__count {
@@ -224,7 +224,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    animation: fadeInUp 0.8s ease;
+    animation: fadeInUp 0.8s ease 0.4s both;
   }
 
   &__count {

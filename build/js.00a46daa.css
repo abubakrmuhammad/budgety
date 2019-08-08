@@ -69,6 +69,8 @@ body {
   border-radius: 5px;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.19), 0 0.6rem 0.6rem rgba(0, 0, 0, 0.23);
   overflow: hidden;
+  -webkit-animation: popIn 0.4s ease;
+          animation: popIn 0.4s ease;
 }
 
 .main {
@@ -98,14 +100,14 @@ body {
 }
 .budget__title {
   font-size: 1.8rem;
-  -webkit-animation: fadeInUp 0.8s ease;
-          animation: fadeInUp 0.8s ease;
+  -webkit-animation: fadeInUp 0.8s ease 0.4s both;
+          animation: fadeInUp 0.8s ease 0.4s both;
 }
 .budget__value {
   font-size: 4.5rem;
   margin: 1rem auto;
-  -webkit-animation: fadeInUp 0.8s ease;
-          animation: fadeInUp 0.8s ease;
+  -webkit-animation: fadeInUp 0.8s ease 0.4s both;
+          animation: fadeInUp 0.8s ease 0.4s both;
 }
 .budget__income, .budget__expenses {
   display: grid;
@@ -116,8 +118,8 @@ body {
   font-size: 1.4rem;
   border-radius: 1px;
   text-transform: uppercase;
-  -webkit-animation: popIn 0.5s ease 0.5s both;
-          animation: popIn 0.5s ease 0.5s both;
+  -webkit-animation: popIn 0.5s ease 0.8s both;
+          animation: popIn 0.5s ease 0.8s both;
 }
 .budget__income--text, .budget__expenses--text {
   grid-column: 2/3;
@@ -156,8 +158,8 @@ body {
   background-color: #f6f6f6;
   border-bottom: 2px solid #eee;
   overflow: hidden;
-  -webkit-animation: slideDown 0.5s ease 0.7s both;
-          animation: slideDown 0.5s ease 0.7s both;
+  -webkit-animation: slideDown 0.5s ease 0.8s both;
+          animation: slideDown 0.5s ease 0.8s both;
 }
 .add__form {
   height: 100%;
@@ -244,8 +246,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  -webkit-animation: fadeInUp 0.8s ease;
-          animation: fadeInUp 0.8s ease;
+  -webkit-animation: fadeInUp 0.8s ease 0.4s both;
+          animation: fadeInUp 0.8s ease 0.4s both;
 }
 .income__count {
   display: inline-block;
@@ -283,8 +285,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  -webkit-animation: fadeInUp 0.8s ease;
-          animation: fadeInUp 0.8s ease;
+  -webkit-animation: fadeInUp 0.8s ease 0.4s both;
+          animation: fadeInUp 0.8s ease 0.4s both;
 }
 .expenses__count {
   display: inline-block;
