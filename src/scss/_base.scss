@@ -31,6 +31,14 @@ body {
 
 html {
   font-size: 62.5%;
+
+  @media only screen and (max-width: 41.625em) {
+    font-size: 50%;
+  }
+
+  @media only screen and (min-width: 100em) {
+    font-size: 80%;
+  }
 }
 
 body {
@@ -42,30 +50,14 @@ body {
   background-image: linear-gradient(to bottom right, #f7ce68, #fbab7e);
   background-size: cover;
   background-repeat: no-repeat;
-  padding: 6rem;
+  padding: 4rem;
+
+  @media only screen and (max-width: 64em) {
+    padding: 0;
+  }
 }
 
 ::selection {
   background-color: #f7ce68;
   color: #fff;
-}
-
-#debug {
-  background-color: #fbab7e;
-  border: 1px solid darken(#fbab7e, 2);
-  padding: 1rem 1.5rem;
-  color: #fff;
-  border-radius: 3px;
-  cursor: pointer;
-  user-select: none;
-  display: block;
-  margin: -1rem auto 1rem;
-  transition: all 0.2s ease;
-  text-transform: uppercase;
-  font-weight: 300;
-  font-size: 1.4rem;
-
-  &:hover {
-    background-color: darken(#fbab7e, 2);
-  }
 }

@@ -15,6 +15,16 @@ body {
 html {
   font-size: 62.5%;
 }
+@media only screen and (max-width: 41.625em) {
+  html {
+    font-size: 50%;
+  }
+}
+@media only screen and (min-width: 100em) {
+  html {
+    font-size: 80%;
+  }
+}
 
 body {
   color: #555;
@@ -25,7 +35,12 @@ body {
   background-image: linear-gradient(to bottom right, #f7ce68, #fbab7e);
   background-size: cover;
   background-repeat: no-repeat;
-  padding: 6rem;
+  padding: 4rem;
+}
+@media only screen and (max-width: 64em) {
+  body {
+    padding: 0;
+  }
 }
 
 ::-moz-selection {
@@ -38,33 +53,12 @@ body {
   color: #fff;
 }
 
-#debug {
-  background-color: #fbab7e;
-  border: 1px solid #fba574;
-  padding: 1rem 1.5rem;
-  color: #fff;
-  border-radius: 3px;
-  cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  display: block;
-  margin: -1rem auto 1rem;
-  transition: all 0.2s ease;
-  text-transform: uppercase;
-  font-weight: 300;
-  font-size: 1.4rem;
-}
-#debug:hover {
-  background-color: #fba574;
-}
-
 .app {
-  height: calc(100vh - 12rem);
+  min-height: calc(100vh - 8rem);
+  position: relative;
   display: grid;
-  grid-template-rows: -webkit-min-content minmax(-webkit-min-content, 10rem) 1fr;
-  grid-template-rows: min-content minmax(min-content, 10rem) 1fr;
+  grid-template-rows: -webkit-min-content minmax(-webkit-min-content, 10rem);
+  grid-template-rows: min-content minmax(min-content, 10rem);
   background-color: #f7f7f7;
   border-radius: 5px;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.19), 0 0.6rem 0.6rem rgba(0, 0, 0, 0.23);
@@ -72,11 +66,25 @@ body {
   -webkit-animation: popIn 0.4s ease;
           animation: popIn 0.4s ease;
 }
+@media only screen and (max-width: 64em) {
+  .app {
+    min-height: 100vh;
+    border-radius: 0;
+  }
+}
 
 .main {
   display: grid;
   grid-template-columns: 7% 1fr 5% 1fr 7%;
   margin-top: 3rem;
+}
+@media only screen and (max-width: 31.25em) {
+  .main {
+    margin-top: 0;
+    grid-template-columns: 7% 1fr 7%;
+    grid-template-rows: -webkit-min-content -webkit-min-content;
+    grid-template-rows: min-content min-content;
+  }
 }
 
 .header {
@@ -88,6 +96,11 @@ body {
   justify-content: center;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
+}
+@media only screen and (max-width: 64em) {
+  .header {
+    border-radius: 0;
+  }
 }
 
 .budget {
@@ -167,6 +180,19 @@ body {
   align-items: center;
   justify-content: center;
 }
+@media only screen and (max-width: 31.25em) {
+  .add__form {
+    flex-wrap: wrap;
+    width: 70%;
+    margin: 0 auto;
+    padding: 1.5rem 0;
+  }
+}
+@media only screen and (max-width: 23.4375em) {
+  .add__form {
+    width: 88%;
+  }
+}
 .add__form.red .add__type:focus,
 .add__form.red .add__description:focus,
 .add__form.red .add__value:focus {
@@ -209,12 +235,47 @@ body {
   font-size: 1.5rem;
   text-transform: uppercase;
 }
+@media only screen and (max-width: 31.25em) {
+  .add__type {
+    flex: 0 0 calc(50% - 2rem);
+    order: 0;
+    margin-bottom: 0.7rem;
+  }
+}
 .add__description {
   flex: 0 0 30%;
+}
+@media only screen and (max-width: 48em) {
+  .add__description {
+    flex: 0 0 50%;
+  }
+}
+@media only screen and (max-width: 41.625em) {
+  .add__description {
+    flex: 0 0 30%;
+  }
+}
+@media only screen and (max-width: 31.25em) {
+  .add__description {
+    flex: 0 0 calc(90% - 1rem);
+    order: 2;
+  }
 }
 .add__value {
   min-width: 0;
   flex: 0 0 9%;
+}
+@media only screen and (max-width: 48em) {
+  .add__value {
+    flex: 0 0 12%;
+  }
+}
+@media only screen and (max-width: 31.25em) {
+  .add__value {
+    flex: 0 0 50%;
+    order: 1;
+    margin-bottom: 0.7rem;
+  }
 }
 .add__button {
   color: #1abc9c;
@@ -233,9 +294,23 @@ body {
 .add__button:active {
   transform: translateY(2px);
 }
+@media only screen and (max-width: 31.25em) {
+  .add__button {
+    flex: 0 0 10%;
+    order: 3;
+    margin-left: 0;
+  }
+}
 
 .income {
   grid-column: 2/3;
+  overflow: hidden;
+}
+@media only screen and (max-width: 31.25em) {
+  .income {
+    margin-top: 2.5rem;
+    grid-column: 2/2;
+  }
 }
 .income__title {
   color: #1abc9c;
@@ -275,6 +350,13 @@ body {
 
 .expenses {
   grid-column: 4/5;
+  overflow: hidden;
+}
+@media only screen and (max-width: 31.25em) {
+  .expenses {
+    margin-top: 2.5rem;
+    grid-column: 2/2;
+  }
 }
 .expenses__title {
   color: #e74c3c;
@@ -390,6 +472,23 @@ body {
   cursor: pointer;
   -webkit-animation: slideDownAlert 0.2s ease-in;
           animation: slideDownAlert 0.2s ease-in;
+}
+@media only screen and (max-width: 48em) {
+  .alert {
+    max-width: 50%;
+  }
+}
+@media only screen and (max-width: 41.625em) {
+  .alert {
+    min-width: 40%;
+    max-width: 80%;
+  }
+}
+@media only screen and (max-width: 31.25em) {
+  .alert {
+    min-width: 70%;
+    max-width: 100%;
+  }
 }
 .alert--hidden {
   -webkit-animation: slideUpAlert 0.2s ease-in;

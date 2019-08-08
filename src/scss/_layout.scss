@@ -1,26 +1,36 @@
 .app {
-  height: calc(100vh - 12rem);
+  min-height: calc(100vh - 8rem);
+  position: relative;
   display: grid;
-  grid-template-rows: min-content minmax(min-content, 10rem) 1fr;
+  grid-template-rows: min-content minmax(min-content, 10rem);
   // grid-template-columns: 10% 1fr 10%;
   // [sidebar-start] 8rem [sidebar-end full-start]
   // minmax(6rem, 1fr) [center-start]
   // repeat(8, [col-start] minmax(min-content, 14rem) [col-end])
   // [center-end] minmax(6rem, 1fr) [full-end];
   background-color: $color-gray-light-1;
-  // padding: 0 10%;
   border-radius: $border-radius-medium;
   box-shadow: 0 1rem 2rem rgba($color-black, 0.19),
     0 0.6rem 0.6rem rgba($color-black, 0.23);
-  // min-height: 500px;
   overflow: hidden;
   animation: popIn 0.4s ease;
+
+  @media only screen and (max-width: 64em) {
+    min-height: 100vh;
+    border-radius: 0;
+  }
 }
 
 .main {
   display: grid;
   grid-template-columns: 7% 1fr 5% 1fr 7%;
   margin-top: 3rem;
+
+  @media only screen and (max-width: 31.25em) {
+    margin-top: 0;
+    grid-template-columns: 7% 1fr 7%;
+    grid-template-rows: min-content min-content;
+  }
 }
 
 .header {
@@ -36,5 +46,8 @@
   justify-content: center;
   border-top-right-radius: $border-radius-medium;
   border-top-left-radius: $border-radius-medium;
-  // grid-column: 1 / -1;
+
+  @media only screen and (max-width: 64em) {
+    border-radius: 0;
+  }
 }

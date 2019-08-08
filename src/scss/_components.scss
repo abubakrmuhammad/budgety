@@ -90,6 +90,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media only screen and (max-width: 31.25em) {
+      flex-wrap: wrap;
+      width: 70%;
+      margin: 0 auto;
+      padding: 1.5rem 0;
+    }
+
+    @media only screen and (max-width: 23.4375em) {
+      width: 88%;
+    }
   }
 
   &__form.red {
@@ -132,15 +143,44 @@
   &__type {
     font-size: 1.5rem;
     text-transform: uppercase;
+
+    @media only screen and (max-width: 31.25em) {
+      flex: 0 0 calc(50% - 2rem);
+      order: 0;
+      margin-bottom: 0.7rem;
+    }
   }
 
   &__description {
     flex: 0 0 30%;
+
+    @media only screen and (max-width: 48em) {
+      flex: 0 0 50%;
+    }
+
+    @media only screen and (max-width: 41.625em) {
+      flex: 0 0 30%;
+    }
+
+    @media only screen and (max-width: 31.25em) {
+      flex: 0 0 calc(90% - 1rem);
+      order: 2;
+    }
   }
 
   &__value {
     min-width: 0;
     flex: 0 0 9%;
+
+    @media only screen and (max-width: 48em) {
+      flex: 0 0 12%;
+    }
+
+    @media only screen and (max-width: 31.25em) {
+      flex: 0 0 50%;
+      order: 1;
+      margin-bottom: 0.7rem;
+    }
   }
 
   &__button {
@@ -157,6 +197,12 @@
     &:active {
       transform: translateY(2px);
     }
+
+    @media only screen and (max-width: 31.25em) {
+      flex: 0 0 10%;
+      order: 3;
+      margin-left: 0;
+    }
   }
 }
 
@@ -166,6 +212,12 @@
 
 .income {
   grid-column: 2 / 3;
+  overflow: hidden;
+
+  @media only screen and (max-width: 31.25em) {
+    margin-top: 2.5rem;
+    grid-column: 2 / 2;
+  }
 
   &__title {
     color: $color-green;
@@ -214,6 +266,12 @@
 
 .expenses {
   grid-column: 4 / 5;
+  overflow: hidden;
+
+  @media only screen and (max-width: 31.25em) {
+    margin-top: 2.5rem;
+    grid-column: 2 / 2;
+  }
 
   &__title {
     color: $color-red;
@@ -345,6 +403,20 @@
   border-radius: $border-radius-medium;
   cursor: pointer;
   animation: slideDownAlert 0.2s ease-in;
+
+  @media only screen and (max-width: 48em) {
+    max-width: 50%;
+  }
+
+  @media only screen and (max-width: 41.625em) {
+    min-width: 40%;
+    max-width: 80%;
+  }
+
+  @media only screen and (max-width: 31.25em) {
+    min-width: 70%;
+    max-width: 100%;
+  }
 
   &--hidden {
     animation: slideUpAlert 0.2s ease-in;
